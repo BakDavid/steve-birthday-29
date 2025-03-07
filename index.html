@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenge Page</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        input {
+            background: black;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 10px;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        button {
+            background: #00ff00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #009900;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            display: none;
+        }
+        #error-message {
+            margin-top: 10px;
+            font-size: 18px;
+            color: red;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter the Code</h1>
+    <input type="text" id="codeInput" maxlength="5" placeholder="Enter 5-digit code">
+    <button onclick="checkCode()">Submit</button>
+    <p id="message">Happy birthday Steve!</p>
+    <p id="error-message"></p>
+    <audio id="song" src="Steve.mp3"></audio>
+
+    <script>
+        function checkCode() {
+            const correctCode = "56823";
+            const userCode = document.getElementById("codeInput").value;
+            const errorMessage = document.getElementById("error-message");
+            const errorMessages = [
+                "Access Denied!",
+                "Granny would love these numbers!",
+                "Spank me!",
+                "Yamete kudesai!", 
+                "I'm gonna fist you!"
+            ];
+            
+            if (userCode === correctCode) {
+                document.getElementById("message").style.display = "block";
+                document.getElementById("song").play();
+                errorMessage.style.display = "none";
+            } else {
+                errorMessage.textContent = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
